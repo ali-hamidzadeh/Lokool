@@ -1,0 +1,28 @@
+{
+  "brand": "Lokool",
+  "home": {
+    "title": "Tools that never send your file anywhere",
+    "subtitle": "Processing happens entirely in your browser. Nothing gets uploaded.",
+    "goToTool": "Compress Image"
+  },
+  "compressImage": {
+    "title": "Compress Image",
+    "description": "Shrink an image with no visible quality loss — all on this device.",
+    "dropzoneIdle": "Drop a file here or click to choose",
+    "dropzoneActive": "Drop it...",
+    "dropzoneHint": "JPG, PNG, or WebP — up to 20MB",
+    "processing": "Compressing...",
+    "done": "Done",
+    "error": "Something went wrong processing this file",
+    "download": "Download",
+    "originalSize": "Original size",
+    "newSize": "New size",
+    "reduction": "Size reduction",
+    "removeFile": "Remove"
+  },
+  "privacy": {
+    "badge": "Zero upload",
+    "detail": "After the page loads, no network request ever sends your file anywhere."
+  },
+  "footer": { "dataSaverLabel": "Data saver" }
+}

@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1>ali</h1>;
+  return <div>Home page — coming soon</div>;
 }
