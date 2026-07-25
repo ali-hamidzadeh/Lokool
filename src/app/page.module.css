@@ -1,0 +1,63 @@
+.main {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.langSwitch {
+  position: absolute;
+  top: var(--space-6);
+  inset-inline-end: var(--space-6); /* logical property: right در ltr، left در rtl */
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.hero {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.brand {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-vault-bright);
+  letter-spacing: 0.05em;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.cta {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-vault);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+
+.cta:hover {
+  background: var(--color-vault-bright);
+}
