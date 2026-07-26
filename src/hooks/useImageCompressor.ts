@@ -5,6 +5,11 @@ import type {
   CompressRequest,
   CompressResponse,
 } from "@/lib/workers/image-compress.worker";
+import {
+  COMPRESSION_PRESETS,
+  DEFAULT_COMPRESSION_MODE,
+  type CompressionMode,
+} from "@/lib/compressionPresets";
 
 export interface CompressedFileState {
   id: string;
@@ -17,11 +22,9 @@ export interface CompressedFileState {
   errorMessage?: string;
 }
 
-const MAX_SIZE_MB = 1.5;
-const MAX_DIMENSION = 2000;
-
 export function useImageCompressor() {
   const [files, setFiles] = useState<CompressedFileState[]>([]);
+  const [mode, setMode] = useState<CompressionMode>(DEFAULT_COMPRESSION_MODE);
   const workerRef = useRef<Worker | null>(null);
 
   useEffect(() => {
@@ -53,32 +56,37 @@ export function useImageCompressor() {
     return () => workerRef.current?.terminate();
   }, []);
 
-  const addFiles = useCallback((incoming: File[]) => {
-    const newEntries: CompressedFileState[] = incoming.map((file) => ({
-      id: `${file.name}-${file.size}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
-      fileName: file.name,
-      status: "processing",
-      progress: 0,
-      originalSize: file.size,
-    }));
+  const addFiles = useCallback(
+    (incoming: File[]) => {
+      const preset = COMPRESSION_PRESETS[mode];
 
-    setFiles((prev) => [...prev, ...newEntries]);
+      const newEntries: CompressedFileState[] = incoming.map((file) => ({
+        id: `${file.name}-${file.size}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        fileName: file.name,
+        status: "processing",
+        progress: 0,
+        originalSize: file.size,
+      }));
 
-    incoming.forEach((file, i) => {
-      const request: CompressRequest = {
-        type: "compress",
-        id: newEntries[i].id,
-        file,
-        maxSizeMB: MAX_SIZE_MB,
-        maxWidthOrHeight: MAX_DIMENSION,
-      };
-      workerRef.current?.postMessage(request);
-    });
-  }, []);
+      setFiles((prev) => [...prev, ...newEntries]);
+
+      incoming.forEach((file, i) => {
+        const request: CompressRequest = {
+          type: "compress",
+          id: newEntries[i].id,
+          file,
+          maxSizeMB: preset.maxSizeMB,
+          maxWidthOrHeight: preset.maxWidthOrHeight,
+        };
+        workerRef.current?.postMessage(request);
+      });
+    },
+    [mode],
+  );
 
   const removeFile = useCallback((id: string) => {
     setFiles((prev) => prev.filter((f) => f.id !== id));
   }, []);
 
-  return { files, addFiles, removeFile };
+  return { files, addFiles, removeFile, mode, setMode };
 }

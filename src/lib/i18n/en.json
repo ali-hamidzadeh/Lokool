@@ -18,11 +18,19 @@
     "originalSize": "Original size",
     "newSize": "New size",
     "reduction": "Size reduction",
-    "removeFile": "Remove"
+    "removeFile": "Remove",
+    "presets": {
+      "label": "Compression level",
+      "high-quality": "High quality",
+      "recommended": "Recommended",
+      "max-compression": "Max compression"
+    }
   },
   "privacy": {
     "badge": "Zero upload",
     "detail": "After the page loads, no network request ever sends your file anywhere."
   },
-  "footer": { "dataSaverLabel": "Data saver" }
+  "footer": {
+    "dataSaverLabel": "Data saver"
+  }
 }

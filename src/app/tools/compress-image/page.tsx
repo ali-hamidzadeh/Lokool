@@ -5,11 +5,12 @@ import { useImageCompressor } from "@/hooks/useImageCompressor";
 import { FileDropzone } from "@/components/FileDropzone";
 import { ProcessingStatus } from "@/components/ProcessingStatus";
 import { PrivacyBadge } from "@/components/PrivacyBadge";
+import { CompressionModeSelector } from "@/components/CompressionModeSelector";
 import styles from "./page.module.css";
 
 export default function CompressImagePage() {
   const { t } = useLocale();
-  const { files, addFiles, removeFile } = useImageCompressor();
+  const { files, addFiles, removeFile, mode, setMode } = useImageCompressor();
 
   return (
     <main className={styles.main}>
@@ -18,6 +19,8 @@ export default function CompressImagePage() {
         <p className={styles.description}>{t.compressImage.description}</p>
         <PrivacyBadge />
       </div>
+
+      <CompressionModeSelector mode={mode} onChange={setMode} />
 
       <FileDropzone onFilesAccepted={addFiles} />
       <ProcessingStatus files={files} onRemove={removeFile} />

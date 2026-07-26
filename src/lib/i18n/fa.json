@@ -18,11 +18,19 @@
     "originalSize": "حجم اصلی",
     "newSize": "حجم جدید",
     "reduction": "کاهش حجم",
-    "removeFile": "حذف"
+    "removeFile": "حذف",
+    "presets": {
+      "label": "سطح فشرده‌سازی",
+      "high-quality": "کیفیت بالا",
+      "recommended": "پیشنهادی",
+      "max-compression": "فشرده‌سازی حداکثری"
+    }
   },
   "privacy": {
     "badge": "صفر آپلود",
     "detail": "این صفحه پس از بارگذاری اولیه، هیچ درخواست شبکه‌ای برای ارسال فایل شما برقرار نمی‌کند."
   },
-  "footer": { "dataSaverLabel": "حالت کم‌مصرف" }
+  "footer": {
+    "dataSaverLabel": "حالت کم‌مصرف"
+  }
 }
